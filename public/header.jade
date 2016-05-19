@@ -1,0 +1,32 @@
+header
+	.logo
+		a.link(href="/")
+			svg.logo_img(xmlns="http://www.w3.org/2000/svg" viewBox="190 90 180 230")
+				g
+					path(d="M 223.367188 256.273438 C 231.378906 256.273438 238.214844 259.105469 243.882812 264.769531 C 249.597656 270.488281 252.457031 277.347656 252.457031 285.363281 C 252.457031 293.375 249.597656 300.214844 243.882812 305.878906 C 238.214844 311.597656 231.378906 314.453125 223.367188 314.453125 C 215.351562 314.453125 208.488281 311.597656 202.773438 305.878906 C 197.667969 300.777344 194.859375 294.703125 194.351562 287.660156 L 194.351562 283.144531 C 194.859375 276.046875 197.667969 269.925781 202.773438 264.769531 C 208.488281 259.105469 215.351562 256.273438 223.367188 256.273438 M 364.230469 227.179688 L 364.230469 314.453125 L 194.351562 182.777344 L 194.351562 95.503906 L 299.921875 177.191406 L 299.921875 95.425781 L 364.230469 145.339844 L 364.152344 227.179688 Z M 364.230469 227.179688")
+			span otex
+			small Easy poll creation
+	ul.text
+		if !logged
+			li Click on the poll to vote.
+			li Log in to create a new poll.
+	.buttons
+		if logged
+			.buttonwrap
+				img#pic
+				.welcome Welcome, 
+					span#display-name
+					| ! 
+				a.button(href="/logout") Logout
+		else
+			a.button(href="/auth/github")
+				i.fa.fa-github
+				|  Log in with Github
+	if logged
+		ul.menu
+			li#home(class={active: currentUrl === '/'})
+				a(href='/') Home
+			li#newpoll(class={active: currentUrl === '/newpoll'})
+				a(href="/newpoll") New Poll
+			li#mypolls(class={active: currentUrl === '/mypolls'})
+				a(href="/mypolls") My Polls

@@ -1,0 +1,512 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Syncopate:700,400);
+
+$text: white;
+$bg: rgba(0, 0, 0, .4);
+$bg-hover: rgba(0, 0, 0, .6);
+$trans: all .3s ease;
+
+* {
+	box-sizing: border-box;
+}
+
+body, html{
+	min-height: 100%;
+}
+
+body, button, input{
+	font-family: Raleway;
+	font-weight: 300;
+	color: white;
+}
+
+body{
+	background: url('/public/img/bg.jpg') top left / cover no-repeat;
+	margin: 0;
+}
+
+main{
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: 20px;
+	min-height: 100%; 
+	text-align: center;     
+}
+
+h1{
+	color: $text;
+	font-size: 20px;
+	height: 50px;
+	font-weight: 200;
+	letter-spacing: 1px;
+}
+
+li{
+	color: $text;
+	letter-spacing: 1px;
+	list-style: none;
+}
+
+.button{
+	display: inline-block;
+	color: white;
+	border: none;
+	padding: 10px;
+	transition: all .3s ease;
+	cursor: pointer;
+	font-size: 13px;
+	text-decoration: none;
+	background-color: $bg;
+
+	&:hover{
+		background-color: $bg-hover;
+	}
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.link{
+	display: inline-block;
+}
+
+
+.logo{
+	width: 130px;
+	position: relative;
+	margin-bottom: 30px;
+	font-family: Syncopate;
+
+	span{
+		font-weight: 700;
+		color: white;
+		font-size: 40px;
+		margin-left: 5px;
+		vertical-align: bottom;
+		display: inline-block;
+		opacity: 0.6;
+		transition: $trans;
+	}
+
+	path{
+		fill-opacity: .5;
+		transition: $trans;
+	}
+
+	&:hover{
+		span{
+			opacity: .8;
+		}
+
+		path{
+			fill-opacity: .8;
+		}
+	}
+}
+
+.logo_img{
+	width: 50px;
+}
+small{
+	display: inline-block;
+	color: $text;
+	position: absolute;
+	top: 70px;
+	left: 20px;
+}
+
+.logo, .text, .buttons{
+	vertical-align: middle;
+	display: inline-block;
+	width: 33.33%;
+	text-align: left;
+}
+
+.buttons{
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+.buttonwrap{
+	display: inline-block;
+	width: 300px;
+	padding: 10px;
+	background-color: $bg;
+}
+
+header{
+	border-bottom: 1px solid $bg;
+	margin-bottom: 50px;
+}
+
+canvas{
+	width: 200px;
+	height: 200px;
+}
+
+.chart{
+	display: inline-block;
+	width: 350px;
+	height: 350px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 10px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	background: $bg;
+	transition: $trans;
+}
+
+a:hover{
+	.chart{
+		background: $bg-hover;
+	}
+}
+
+form{
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	max-width: 350px;
+	text-align: left;
+	margin-right: 100px;
+}
+
+fieldset{
+	border: none;
+}
+.inputs{
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	width: 350px;
+	vertical-align: top;
+
+	&_short{
+		width: 250px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	&_mini{
+		width: 160px;
+		margin-top: -10px;
+		margin-left: -5px;
+	}
+}
+
+.input_field{
+	font-size: 16px;
+	position: relative;
+	float: right;
+	border: none;
+	border-radius: 0;
+	-webkit-appearance: none;
+	width: 100%;
+	background: transparent;
+	padding: 0.5em;
+	margin-bottom: 2em;
+	color: $text;
+	padding-left: 5px;
+
+	&:focus{
+		outline: none;
+	}
+
+	&:invalid{
+		box-shadow: none;
+	}
+}
+
+.input_label {
+	display: inline-block;
+	float: right;
+	color: $text;	
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	width: 100%;
+	position: absolute;
+	text-align: left;
+	font-size: 1em;
+	padding: 10px 0 5px;
+	pointer-events: none;
+
+	&::after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		background: $text;
+		left: 0;
+		top: 100%;
+		-webkit-transform-origin: 50% 100%;
+		transform-origin: 50% 100%;
+		-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
+		transition: transform 0.3s, background-color 0.3s;
+	}
+}
+
+.input_text {
+	font-size: 16px;
+	position: relative;
+	display: block;
+	padding: 1.6em 0;
+	width: 100%;
+	padding: 0;
+	padding-left: 5px;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	-webkit-transition: -webkit-transform 0.3s, color 0.3s;
+	transition: transform 0.3s, color 0.3s;
+}
+
+.input_field:focus + .input_label::after,
+.filled .input_label::after {
+	background: $text;
+	-webkit-transform: scale3d(1, 0.25, 1);
+	transform: scale3d(1, 0.5, 1);
+}
+
+.input_field:focus + .input_label .input_text,
+.filled .input_label .input_text {
+	color: $text;
+	-webkit-transform: translate3d(0, 2em, 0) scale3d(0.655, 0.655, 1);
+	transform: translate3d(0, 2em, 0)  scale3d(0.8, 0.8, 1);
+}
+
+.select_field{
+	color: $text;
+	background-color: transparent;
+	border: none;
+  border-bottom: 2px solid $text;
+  display: inline-block;
+  font: inherit;
+  line-height: 1.5em;
+  padding: 0.5em 3.5em 0.5em 0;
+  width: 250px;
+  height: 40px;
+
+  padding: 0.5em 0;
+	margin-bottom: 2em;
+  
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, $text 50%),
+    linear-gradient(135deg, $text 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+
+  &:invalid{
+		box-shadow: none;
+	}
+}
+.select_opt{
+	color: $text;
+	background: url('/public/img/bg.jpg') center no-repeat;
+	padding: 10px;
+}
+option{
+	border: none;
+}
+
+.selected{
+	color: $text;
+	border-bottom: 1px solid $text;
+}
+#plus{
+	display: inline-block;
+	color: $text;
+	vertical-align: middle;
+	position: absolute;
+	z-index: 5;
+	bottom: 40px;
+	right: 112px;
+}
+
+.menu{
+	margin: 0;
+	padding: 0;
+	padding-right: 30px;
+	text-align: right;
+	position: relative;
+
+	li{
+		display: inline-block;
+		list-style: none;
+		padding: 10px;
+
+		&.active{
+			background-color: $bg;
+
+			a{
+				color: $text;
+			}
+		}
+
+		a{
+			color: $text;
+			text-decoration: none;
+			transition: color .3s ease;
+
+			&:hover{
+				color: $text;
+			}
+		}
+	}
+
+	#home{
+		right: 223px;
+	}
+
+	#newpoll{
+		right: 125px;
+	}
+
+	#mypolls{
+		right: 30px;
+	}
+}
+
+.login, .welcome{
+	margin-bottom: 20px;
+}
+
+.radio {
+  margin: 0 0 0.75em 0;
+}
+
+.radio_input {
+  display: none;
+}
+.radio_input + .radio_label {
+  color: $text;
+}
+.radio_input + .radio_label .radio_span {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  margin: -1px 15px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.radio_input + .radio_label .radio_span {
+  background-color: $text;
+}
+
+.radio_input:checked + .radio_label .radio_span{
+  background-color: $bg;
+}
+
+.radio_input + .radio_label .radio_span,
+.radio_input:checked + .radio_label .radio_span {
+  transition: background-color .3s ease;
+}
+
+#graph{
+	display:inline-block;
+}
+
+#legend{
+	display: inline-block;
+	margin-right: 40px;
+	text-align: left;
+
+	ul{
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	li{
+		list-style-type: none;
+		margin-bottom: 10px;
+	}
+
+	span{
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		vertical-align: top;
+		margin-right: 10px;
+		border-radius: 50%;
+		border: 1px solid $bg;
+	}
+}
+
+
+
+.error{
+	color: $text;
+	position: absolute;
+	left: 25px;
+	bottom: 70px;
+	width: 250px;
+	opacity: 0;
+	transition: opacity .3s ease-in-out;
+
+	&::before{
+		content: "";
+		display: inline-block;
+		background: url("/public/img/arrow.png") center no-repeat;
+		background-size: 20px;
+		width: 20px;
+		height: 20px;
+		margin-right: 10px;
+	}
+
+	&.show{
+		opacity: 1;
+	}
+}
+
+.delete{
+	cursor: pointer;
+}
+
+.chartWrapper{
+	position: relative;
+	display: inline-block;
+}
+
+.author{
+	position: absolute;
+	right: 40px;
+	bottom: 30px;
+
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+#pic{
+	max-width: 70px;
+	max-height: 70px;
+	float: left;
+}

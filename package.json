@@ -1,0 +1,23 @@
+{
+  "name": "VotingApp",
+  "description": "FreeCodeCamp Voting Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CATlCO/votingapp"
+  },
+  "author": "Catico",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^1.2.0",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "jade": "^1.11.0",
+    "mongoose": "^4.4.11",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0"
+  }
+}

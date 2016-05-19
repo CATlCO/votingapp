@@ -1,0 +1,59 @@
+doctype html
+html(lang="en")
+	head
+		title VoteX - Easy poll creation
+		meta(charset="utf-8")
+		link(rel="stylesheet", type="text/css", href="/public/css/main.css")
+		link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css")
+	body
+		main
+
+			include header.jade
+
+			form(action="api/polls" method="post")
+				fieldset
+					.inputs
+						#input_list
+							.input
+								input.input_field(type="text", name="question", required)
+								label.input_label
+									span.input_text Poll question
+							.input.input_short
+								input.input_field(type="text", name="options", required)
+								label.input_label
+									span.input_text Option 1
+							.input.input_short
+								input.input_field(type="text", name="options", required)
+								label.input_label
+									span.input_text Option 2
+						a#plus(href="#")
+							i.fa.fa-plus
+					.select
+						select.select_field(name="chart", required)
+							option.select_default(value="", selected, hidden) Choose chart type
+							option.select_opt(value="pie") Pie Chart
+							option.select_opt(value="doughnut") Doughnut Chart
+					.select
+						select.select_field(name="hue", required)
+							option.select_default(value="", selected, hidden) Choose color palette
+							option.select_opt(value="cherry") Cherry
+							option.select_opt(value="sandy") Sandy
+							option.select_opt(value="blood") Blood
+							option.select_opt(value="river") River
+							option.select_opt(value="algae") Algae
+							option.select_opt(value="night") Night
+							option.select_opt(value="sunset") Sunset
+					button.button(type="submit") Create
+
+			#legend
+			#graph
+				.chartWrapper
+					.chart
+						h1 Chart preview
+
+		script(src="/public/js/Chart.min.js")
+		script(src="/public/js/classie.js")
+		script(src="/public/js/script.js")
+		script(src="/common/ajax-functions.js")
+		script(src="/controllers/chartController.client.js")
+		script(src="/controllers/userController.client.js")

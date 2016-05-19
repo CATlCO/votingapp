@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+	head
+		title VoteX - Easy poll creation
+		meta(charset="utf-8")
+		link(rel="stylesheet", type="text/css", href="/public/css/main.css")
+		link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css")
+	body
+		main
+
+			include header.jade
+
+			#container
+				#graph
+
+		script(src="/public/js/Chart.min.js")
+		script(src="/common/ajax-functions.js")
+		script(src="/controllers/chartController.client.js")
+		script(src="/controllers/userController.client.js")
