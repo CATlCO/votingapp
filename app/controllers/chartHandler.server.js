@@ -2,7 +2,6 @@
 
 var Polls = require('../models/polls.js');
 var Users = require('../models/users.js');
-var _ = require('underscore');
 
 function chartHandler(){
 
