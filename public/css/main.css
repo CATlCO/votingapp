@@ -13,6 +13,9 @@ body, button, input {
   font-weight: 300;
   color: white; }
 
+html {
+  position: relative; }
+
 body {
   background: url("/public/img/bg.jpg") top left/cover no-repeat;
   margin: 0; }
@@ -22,7 +25,8 @@ main {
   margin: 0 auto;
   padding: 20px;
   min-height: 100%;
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 100px; }
 
 h1 {
   color: white;
@@ -439,13 +443,17 @@ option {
   float: left; }
 
 footer {
-  margin-top: 50px;
   text-align: center;
   padding-bottom: 10px;
-  height: 30px; }
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
 
-.github:hover {
-  text-decoration: underline; }
+.github {
+  color: rgba(0, 0, 0, 0.6);
+  transition: color 0.3s ease; }
+  .github:hover {
+    color: white; }
 
 @media (max-width: 1000px) {
   .multiple .chartWrapper {

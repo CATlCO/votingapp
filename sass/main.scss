@@ -23,6 +23,10 @@ body, button, input{
 	color: white;
 }
 
+html{
+	position: relative;
+}
+
 body{
 	background: url('/public/img/bg.jpg') top left / cover no-repeat;
 	margin: 0;
@@ -34,6 +38,7 @@ main{
 	padding: 20px;
 	min-height: 100%; 
 	text-align: center;     
+	padding-bottom: 100px;
 }
 
 h1{
@@ -568,16 +573,19 @@ option{
 }
 
 footer{
-	margin-top: 50px;
 	text-align: center;
 	padding-bottom: 10px;
-	height: 30px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 .github{
+	color: $bg-hover;
+	transition: color $trans;
 
 	&:hover{
-		text-decoration: underline;
+		color: white;
 	}
 }
 
