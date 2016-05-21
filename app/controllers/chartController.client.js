@@ -1,5 +1,3 @@
-'use strict';
-
 
 (function(){
 	if (path === "/") path = "/polls";
@@ -16,20 +14,74 @@
 		sandy: { color1: {red: 0, green: 47, blue: 47}, color2: {red: 230, green: 226, blue: 175}},
 		river: { color1: {red: 25, green: 52, blue: 65}, color2: {red: 252, green: 255, blue: 245}},
 		sunset: { color1: {red: 189, green: 73, blue: 50}, color2: {red: 255, green: 211, blue: 78}},
-		blood: { color1: {red: 142, green: 40, blue: 0}, color2: {red: 255, green: 240, blue: 165}},
+		rust: { color1: {red: 142, green: 40, blue: 0}, color2: {red: 255, green: 240, blue: 165}},
 		algae: { color1: {red: 0, green: 163, blue: 136}, color2: {red: 255, green: 255, blue: 157}},
 		night: { color1: {red: 0, green: 67, blue: 88}, color2: {red: 255, green: 255, blue: 26}},
 		cherry: { color1: {red: 185, green: 18, blue: 27}, color2: {red: 246, green: 228, blue: 151}}
 	}
 
-	Chart.defaults.global.legend = { fdisplay: false }
+	Chart.defaults.global.legend = { display: false, defaultFontColor: '#ffffff', defaultFontFamily: 'Raleway' };
+	var options = { 
+		scales: { 
+			yAxes: [{ 
+				display: false,
+				ticks: { 
+					beginAtZero: true, 
+					fontColor: 'rgba(255, 255, 255, .4)',
+					min: 0
+				}, 
+				gridLines: { 
+					display: false,
+					zeroLineColor: 'rgba(255, 255, 255, 1)'
+				} 
+			}], 
+			xAxes: [{ 
+				display: false,
+				ticks: {
+					beginAtZero: true, 
+					fontColor: 'rgba(255, 255, 255, .4)',
+					min: 0
+				}, 
+				gridLines: { 
+					display: false,
+					zeroLineColor: 'rgba(255, 255, 255, 1)'
+				} 
+			}] 
+		}};
+	var optionsdetail = { 
+		scales: { 
+			yAxes: [{ 
+				ticks: { 
+					beginAtZero: true, 
+					fontColor: 'rgba(255, 255, 255, .4)',
+					min: 0
+				}, 
+				gridLines: { 
+					display: false,
+					zeroLineColor: 'rgba(255, 255, 255, 1)'
+				} 
+			}], 
+			xAxes: [{ 
+				ticks: {
+					beginAtZero: true, 
+					fontColor: 'rgba(255, 255, 255, .4)',
+					min: 0
+				}, 
+				gridLines: { 
+					display: false,
+					zeroLineColor: 'rgba(255, 255, 255, 1)'
+				} 
+			}] 
+		}};
 
 	function drawGraph(data){
 		var ctx; 
 
 		for (var i in data){
+			var social = '<div class="social"><a href="http://www.facebook.com/sharer.php?u='+appUrl +'/polls/'+data[i]._id+'" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a><a href="https://twitter.com/share?url='+appUrl +'/polls/'+data[i]._id+'" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url='+appUrl +'/polls/'+data[i]._id+'" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a></div>';
+			
 			if (mypolls){
-				document.getElementById('graph').innerHTML += '<div class="chartWrapper"><a href="/polls/'+data[i]._id+'"><div class="chart"><h1>'+data[i].question+'</h1><canvas class="canvas" id="chart'+i+'"></canvas></div></a><a class="author" href="#" target="_blank">delete</a></div>';
+				document.getElementById('graph').innerHTML += '<div class="chartWrapper"><a href="/polls/'+data[i]._id+'"><div class="chart"><h1>'+data[i].question+'</h1><canvas class="canvas" id="chart'+i+'"></canvas></div></a>'+social+'<a class="author" href="/polls/'+data[i]._id+'">delete</a></div>';
 			} else if (detail || newpoll){
 				 document.getElementById('graph').innerHTML = '<div class="chartWrapper"><div class="chart"><h1>'+data[i].question+'</h1><canvas class="canvas" id="chart'+i+'"></canvas></div></a><a class="author" href="https://github.com/'+data[i].author.github.username+'" target="_blank">@'+ data[i].author.github.username + '</div>';
 			} else {
@@ -41,28 +93,34 @@
 			var per, green, red, blue;
 			var steps = data[i].chartData[0].length;
 			
-			addColor(colors[data[i].color]);
-
 			function addColor(col){
 				for (var k=0; k<steps; k++) {
 					per = (100/(steps-1) * k)/100;
 					red  = parseInt(col.color1.red + per * (col.color2.red - col.color1.red), 10);
 					green = parseInt(col.color1.green + per * (col.color2.green - col.color1.green), 10);
 					blue = parseInt(col.color1.blue + per * (col.color2.blue - col.color1.blue), 10);
-					bg.push('rgba('+red+', '+green+', '+blue+', .7)');
+					bg.push('rgba('+red+', '+green+', '+blue+', .6)');
 					hover.push('rgba('+red+', '+green+', '+blue+', 1)');
 				}	
 			}
+			
+			addColor(colors[data[i].color]);
 
-			data[i].chartData = { labels: data[i].chartData[0], datasets: [{data: data[i].chartData[1], backgroundColor: bg, hoverBackgroundColor: hover, borderColor: hover, borderWidth: 1}]};
+			if (data[i].chart === "line") {
+				data[i].chartData = { labels: data[i].chartData[0], datasets: [{data: data[i].chartData[1], borderColor: hover[Math.round(hover.length / 2)], borderWidth: 2}]};
+			} else {
+				data[i].chartData = { labels: data[i].chartData[0], datasets: [{data: data[i].chartData[1], backgroundColor: bg, hoverBackgroundColor: hover, borderColor: hover, borderWidth: 1}]};
+			}
 		}
 
 		for (var j in data){
 			ctx = document.getElementById("chart"+j).getContext("2d");
-			graph = new Chart(ctx, { type: data[j].chart.toLowerCase(), data: data[j].chartData});
+			if ((newpoll || detail) && (data[i].chart === "line" || data[i].chart === "bar")) { 
+				graph = new Chart(ctx, { type: data[j].chart, data: data[j].chartData, options: optionsdetail}); 
+			} else { graph = new Chart(ctx, { type: data[j].chart, data: data[j].chartData, options: options}); }
 		}
 
-		document.getElementById('legend').innerHTML = graph.generateLegend();
+		if ((newpoll || detail) && (data[i].chart === "pie" || data[i].chart === "doughnut")) document.getElementById('legend').innerHTML = graph.generateLegend();
 	}
 
 	function createChart (result) {
@@ -82,16 +140,19 @@
 
 		drawGraph(data);
 
+		if (detail) {
 		var inputlist = document.getElementById('input_list');
-		for (var k in data[0].chartData.labels) {
-			var label =  data[0].chartData.labels[k];
-			if (k == 0){
-				inputlist.innerHTML = '<div class="radio"><input class="radio_input" type="radio" id="'+ label + '" name="options" value="'+ label +'" /><label class="radio_label" for="'+ label + '"><span class="radio_span"></span>'+ label + '</label></div>';
-			} else {
-				inputlist.innerHTML += '<div class="radio"><input class="radio_input" type="radio" id="'+ label + '" name="options" value="'+ label +'" /><label class="radio_label" for="'+ label + '"><span class="radio_span"></span>'+ label + '</label></div>';
+			for (var k in data[0].chartData.labels) {
+				var label =  data[0].chartData.labels[k];
+				if (k == 0){
+					inputlist.innerHTML = '<div class="radio"><input class="radio_input" type="radio" id="'+ label + '" name="options" value="'+ label +'" /><label class="radio_label" for="'+ label + '"><span class="radio_span"></span>'+ label + '</label></div>';
+				} else {
+					inputlist.innerHTML += '<div class="radio"><input class="radio_input" type="radio" id="'+ label + '" name="options" value="'+ label +'" /><label class="radio_label" for="'+ label + '"><span class="radio_span"></span>'+ label + '</label></div>';
+				}
 			}
-			
 		}
+
+		if (mypolls) deletePoll();
 	}
 
 	function vote(){
@@ -107,6 +168,11 @@
 				classie.add(document.getElementById("empty"), "show");
 				setTimeout(function(){
 					classie.remove(document.getElementById("empty"), "show");
+				}, 2000);
+			} else if (data == "same") {
+				classie.add(document.getElementById("same"), "show");
+				setTimeout(function(){
+					classie.remove(document.getElementById("same"), "show");
 				}, 2000);
 			} else {
 				ajaxFunctions.ajaxRequest('POST', apiUrl, createChart, data);
@@ -144,13 +210,19 @@
 		}
 	}
 
-	function deleteChart (result) {
-		
-		
+	function deletePoll() {		
+		[].slice.call(document.getElementsByClassName("author")).forEach(function(del) {
+			del.onclick = function(e) {
+				e.preventDefault();
+				ajaxFunctions.ajaxRequest('DELETE', appUrl + '/api' + del.getAttribute("href"));
+				document.getElementById('graph').removeChild(del.parentNode);
+			}
+		});
 	}
 
 	function validate(inputs) {
-		var own = document.getElementById("owninput").value;
+		var own = document.getElementById("owninput");
+		own = (own ? own.value : "" );
 		for (var i=0; i<inputs.length; i++){
 			if (inputs[i].checked){
 				if(inputs[i].id === "own" && own === "") {
@@ -160,6 +232,7 @@
 				}
 			}
 		}
+		if (inputs.length === 2 && inputs[0] === inputs[1]) return "same";
 		return "none";
 	}
 
@@ -168,15 +241,6 @@
 		ajaxFunctions.ajaxRequest('GET', apiUrl, createChart);
 		if (detail) vote();
 		if (newpoll) newPoll();
-
-		var del = document.getElementsByClassName('delete');
-		for (var i=0; i<del.length; i++){
-			console.log(del[i]);
-			del[i].onclick = function() {
-				console.log("delete");
-				ajaxFunctions.ajaxRequest('DELETE', appUrl + del[i].dataset.url);
-			}
-		}
 
 	});
 

@@ -8,6 +8,8 @@ body, html {
 
 body, button, input {
   font-family: Raleway;
+  font-size: 16px;
+  letter-spacing: 0.5px;
   font-weight: 300;
   color: white; }
 
@@ -25,13 +27,12 @@ main {
 h1 {
   color: white;
   font-size: 20px;
-  height: 50px;
+  height: 40px;
   font-weight: 200;
   letter-spacing: 1px; }
 
 li {
   color: white;
-  letter-spacing: 1px;
   list-style: none; }
 
 .button {
@@ -47,6 +48,9 @@ li {
   .button:hover {
     background-color: rgba(0, 0, 0, 0.6); }
 
+form .button {
+  margin-top: 20px; }
+
 a {
   text-decoration: none;
   color: inherit; }
@@ -58,7 +62,11 @@ a {
   width: 130px;
   position: relative;
   margin-bottom: 30px;
-  font-family: Syncopate; }
+  font-family: Syncopate;
+  letter-spacing: -0.5px;
+  min-width: 200px;
+  float: left;
+  vertical-align: middle; }
   .logo span {
     font-weight: 700;
     color: white;
@@ -67,10 +75,10 @@ a {
     vertical-align: bottom;
     display: inline-block;
     opacity: 0.6;
-    transition: all 0.3s ease; }
+    transition: opacity 0.3s ease; }
   .logo path {
     fill-opacity: .5;
-    transition: all 0.3s ease; }
+    transition: fill-opacity 0.3s ease; }
   .logo:hover span {
     opacity: .8; }
   .logo:hover path {
@@ -86,41 +94,41 @@ small {
   top: 70px;
   left: 20px; }
 
-.logo, .text, .buttons {
-  vertical-align: middle;
-  display: inline-block;
-  width: 33.33%;
-  text-align: left; }
+.text {
+  margin: 0;
+  padding: 0;
+  padding: 30px 0; }
+  .text li {
+    text-align: center; }
 
 .buttons {
   text-align: right;
-  margin-bottom: 20px; }
+  margin: 30px 0;
+  float: right; }
 
 .buttonwrap {
   display: inline-block;
   width: 300px;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.4); }
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-top: -30px; }
 
 header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   margin-bottom: 50px; }
 
-canvas {
-  width: 200px;
-  height: 200px; }
-
 .chart {
+  position: relative;
   display: inline-block;
-  width: 350px;
-  height: 350px;
+  width: calc(100% - 20px);
   text-align: center;
   vertical-align: middle;
   padding: 10px;
-  margin-right: 20px;
+  padding-bottom: 50px;
+  margin-left: 20px;
   margin-bottom: 20px;
   background: rgba(0, 0, 0, 0.4);
-  transition: all 0.3s ease; }
+  transition: background-color 0.3s ease; }
 
 a:hover .chart {
   background: rgba(0, 0, 0, 0.6); }
@@ -129,12 +137,15 @@ form {
   display: inline-block;
   vertical-align: middle;
   position: relative;
-  max-width: 350px;
+  max-width: 300px;
   text-align: left;
-  margin-right: 100px; }
+  margin-right: 100px;
+  margin-bottom: 50px; }
 
 fieldset {
-  border: none; }
+  border: none;
+  padding: 0;
+  margin: 0; }
 
 .inputs {
   margin-bottom: 20px;
@@ -144,7 +155,7 @@ fieldset {
   position: relative;
   z-index: 1;
   display: inline-block;
-  width: 350px;
+  width: 300px;
   vertical-align: top; }
   .input_short {
     width: 250px;
@@ -273,9 +284,10 @@ option {
   position: absolute;
   z-index: 5;
   bottom: 40px;
-  right: 112px; }
+  right: 62px; }
 
 .menu {
+  clear: both;
   margin: 0;
   padding: 0;
   padding-right: 30px;
@@ -335,13 +347,27 @@ option {
   transition: background-color .3s ease; }
 
 #graph {
+  display: inline-block;
+  margin-left: -20px; }
+
+.right {
   display: inline-block; }
+
+.single {
+  margin: 0;
+  width: 400px; }
+  .single .chart {
+    min-height: 350px;
+    margin: 0; }
 
 #legend {
   display: inline-block;
   margin-right: 40px;
-  text-align: left; }
+  text-align: left;
+  position: relative; }
   #legend ul {
+    padding: 0;
+    margin: 0;
     display: inline-block;
     vertical-align: middle; }
   #legend li {
@@ -380,16 +406,73 @@ option {
 
 .chartWrapper {
   position: relative;
-  display: inline-block; }
+  display: inline-block;
+  width: 100%; }
+
+.multiple {
+  text-align: left; }
+
+.multiple .chartWrapper {
+  width: 33.33%; }
 
 .author {
   position: absolute;
-  right: 40px;
+  right: 20px;
   bottom: 30px; }
   .author:hover {
     text-decoration: underline; }
+
+.social {
+  position: absolute;
+  left: 30px;
+  bottom: 30px; }
+  .social a {
+    margin-right: 10px;
+    opacity: .4;
+    transition: opacity 0.3s ease; }
+    .social a:hover {
+      opacity: .8; }
 
 #pic {
   max-width: 70px;
   max-height: 70px;
   float: left; }
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding-bottom: 10px;
+  height: 30px; }
+
+.github:hover {
+  text-decoration: underline; }
+
+@media (max-width: 1000px) {
+  .multiple .chartWrapper {
+    width: 50%; } }
+
+@media (max-width: 650px) {
+  main {
+    padding: 10px; }
+  .logo, .buttons {
+    float: none; }
+  .buttons {
+    margin-top: 50px; }
+  .text {
+    padding-top: 0; }
+    .text li {
+      text-align: left; }
+  .buttonwrap {
+    margin-top: 0; }
+  .single {
+    max-width: 320px; }
+    .single .chart {
+      min-height: 280px; }
+  .single {
+    max-width: 320px; }
+  form {
+    width: 100%; } }
+
+@media (max-width: 600px) {
+  .multiple .chartWrapper {
+    width: 100%; } }

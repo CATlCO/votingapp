@@ -3,6 +3,7 @@ html(lang="en")
 	head
 		title VoteX - Easy poll creation
 		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width,initial-scale=1")
 		link(rel="stylesheet", type="text/css", href="/public/css/main.css")
 		link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css")
 	body
@@ -15,19 +16,23 @@ html(lang="en")
 					fieldset
 						.inputs
 							#input_list
-							.radio
-								input.radio_input#own(type="radio" name="options" value="own")
-								label.radio_label(for="own")
-									span.radio_span
-									.input.input_mini
-										input.input_field(type="text" name="own" id="owninput")
-										label.input_label
-											span.input_text Add Own Option
+							if logged
+								.radio
+									input.radio_input#own(type="radio" name="options" value="own")
+									label.radio_label(for="own")
+										span.radio_span
+										.input.input_mini
+											input.input_field(type="text" name="own" id="owninput")
+											label.input_label
+												span.input_text Add Own Option
 						button.button(type="submit") Vote
 					.error#none Please select an option
 					.error#empty Please fill the space
-				#legend
-				#graph
+				.right
+					#legend
+					#graph.single
+
+		include footer.jade
 
 		script(src="/public/js/classie.js")
 		script(src="/public/js/Chart.min.js")

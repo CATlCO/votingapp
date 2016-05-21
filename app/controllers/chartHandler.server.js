@@ -14,9 +14,8 @@ function chartHandler(){
 	};
 
 	this.myPolls = function(req, res){
-		Users.findById(req.user.id).populate('polls').exec(function(err, user){
+		Users.findById(req.user.id).populate({ path: 'polls', options: {sort: {_id: -1}}}).exec(function(err, user){
 			if (err) { throw err; }
-			console.log()
 			res.json(user.polls);
 		});
 	}
@@ -31,15 +30,16 @@ function chartHandler(){
 	this.updatePoll = function(req, res){
 		Polls.findById(req.params.poll_id).populate('author', 'github').exec(function(err, result){
 			if (err) throw err;
+			var added;
 			var option = req.body.option;
 			var own = req.body.own;
-			if (option != "own"){
-				for(var i=0; i < result.chartData[0].length; i++){
-					if(result.chartData[0][i] == option) {
-						result.chartData[1][i] += 1;
-					}
-				};
-			} else {
+			for(var i=0; i < result.chartData[0].length; i++){
+				if(result.chartData[0][i] == option || result.chartData[0][i] == own) {
+					result.chartData[1][i] += 1;
+					added = true;
+				}
+			};
+			if (!added){
 				result.chartData[0].push(own);
 				result.chartData[1].push(1);
 			}
@@ -57,7 +57,7 @@ function chartHandler(){
 		var options = _.reject(_.uniq(body.options), function(s){ return s == ''; });
 		var values = [];
 		for (var i in options){
-			values.push(rand());
+			values.push(0);
 		}
 		var chartData = [options, values]
 
@@ -79,8 +79,15 @@ function chartHandler(){
 	};
 
 	this.deletePoll = function(req, res){
-		Polls.remove({}, function(err){
+		Polls.remove({_id: req.params.poll_id}, function(err){
 			if (err) { throw err; }
+			Users.findById(req.user.id).exec(function(err, user){
+				if (err) throw err;
+				user.polls.splice(user.polls.indexOf(req.params.poll_id), 1);
+				user.save(function(err, doc){
+					if (err) throw err;
+				});
+			});
 		});
 	}
 

@@ -18,9 +18,6 @@
 			checkInputs();
 			
 			optionCount += 1;
-			if (optionCount > 12) { 
-				plus.style.visibility='hidden';
-			}
 		};
 	}
 	

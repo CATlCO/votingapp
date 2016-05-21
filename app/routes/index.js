@@ -51,7 +51,7 @@ module.exports = function(app, passport){
     .delete(isLoggedIn, chartHandler.deletePoll);
 
   app.route('/api/users').get(isLoggedIn, function (req, res) {
-      res.json(req.user.github);
+    res.json(req.user.github);
   });
 
   app.route('/api/mypolls').get(isLoggedIn, chartHandler.myPolls);

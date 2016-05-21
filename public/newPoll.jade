@@ -3,6 +3,7 @@ html(lang="en")
 	head
 		title VoteX - Easy poll creation
 		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width,initial-scale=1")
 		link(rel="stylesheet", type="text/css", href="/public/css/main.css")
 		link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css")
 	body
@@ -33,23 +34,28 @@ html(lang="en")
 							option.select_default(value="", selected, hidden) Choose chart type
 							option.select_opt(value="pie") Pie Chart
 							option.select_opt(value="doughnut") Doughnut Chart
+							option.select_opt(value="line") Line Chart
+							option.select_opt(value="bar") Bar Chart
 					.select
 						select.select_field(name="hue", required)
 							option.select_default(value="", selected, hidden) Choose color palette
 							option.select_opt(value="cherry") Cherry
 							option.select_opt(value="sandy") Sandy
-							option.select_opt(value="blood") Blood
+							option.select_opt(value="rust") Rust
 							option.select_opt(value="river") River
 							option.select_opt(value="algae") Algae
 							option.select_opt(value="night") Night
 							option.select_opt(value="sunset") Sunset
 					button.button(type="submit") Create
+				.error#same Please provide at least two different options
+			.right
+				#legend
+				#graph.single
+					.chartWrapper
+						.chart
+							h1 Chart preview
 
-			#legend
-			#graph
-				.chartWrapper
-					.chart
-						h1 Chart preview
+		include footer.jade
 
 		script(src="/public/js/Chart.min.js")
 		script(src="/public/js/classie.js")
