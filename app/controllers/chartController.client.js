@@ -153,7 +153,7 @@
 					}
 				}
 			} else{
-			 (document.getElementsByTagName('form'))[0].innerHTML = "You voted in this poll.";
+			 document.getElementById('msg').innerHTML = "You voted in this poll.";
 			}
 		}
 
@@ -174,13 +174,10 @@
 				setTimeout(function(){
 					classie.remove(document.getElementById("empty"), "show");
 				}, 2000);
-			} else if (data == "same") {
-				classie.add(document.getElementById("same"), "show");
-				setTimeout(function(){
-					classie.remove(document.getElementById("same"), "show");
-				}, 2000);
 			} else {
 				ajaxFunctions.ajaxRequest('POST', apiUrl, createChart, data);
+				document.getElementById('msg').innerHTML = "You voted in this poll.";
+				document.getElementById('container').removeChild(document.getElementById('vote'));
 			}
 		};
 	}
