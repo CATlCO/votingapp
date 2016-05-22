@@ -44,7 +44,7 @@ function chartHandler(){
 				result.chartData[1].push(1);
 			}
 			result.markModified('chartData');
-			result.voted.push(req.headers['x-forwarded-for']);
+			result.voters.push(req.headers['x-forwarded-for']);
 			result.markModified('voted');
 			result.save(function(err, doc){
 				if (err) throw err;
