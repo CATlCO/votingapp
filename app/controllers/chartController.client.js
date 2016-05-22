@@ -126,12 +126,13 @@
 	function createChart (result) {
 		var res = JSON.parse(result);
 		var data;
+		var ip = res.ip;
 
-		if (Array.isArray(res)){
-			data = res;
+		if (Array.isArray(res.result)){
+			data = res.result;
 		} else {
 			data = [];
-			data.push(res);
+			data.push(res.result);
 		}
 
 		if (path == "/mypolls" && data.length < 1) {
@@ -141,14 +142,18 @@
 		drawGraph(data);
 
 		if (detail) {
-		var inputlist = document.getElementById('input_list');
-			for (var k in data[0].chartData.labels) {
-				var label =  data[0].chartData.labels[k];
-				if (k == 0){
-					inputlist.innerHTML = '<div class="radio"><input class="radio_input" type="radio" id="'+ label + '" name="options" value="'+ label +'" /><label class="radio_label" for="'+ label + '"><span class="radio_span"></span>'+ label + '</label></div>';
-				} else {
-					inputlist.innerHTML += '<div class="radio"><input class="radio_input" type="radio" id="'+ label + '" name="options" value="'+ label +'" /><label class="radio_label" for="'+ label + '"><span class="radio_span"></span>'+ label + '</label></div>';
+			if (!data[0].voters.includes(ip)){
+			var inputlist = document.getElementById('input_list');
+				for (var k in data[0].chartData.labels) {
+					var label =  data[0].chartData.labels[k];
+					if (k == 0){
+						inputlist.innerHTML = '<div class="radio"><input class="radio_input" type="radio" id="'+ label + '" name="options" value="'+ label +'" /><label class="radio_label" for="'+ label + '"><span class="radio_span"></span>'+ label + '</label></div>';
+					} else {
+						inputlist.innerHTML += '<div class="radio"><input class="radio_input" type="radio" id="'+ label + '" name="options" value="'+ label +'" /><label class="radio_label" for="'+ label + '"><span class="radio_span"></span>'+ label + '</label></div>';
+					}
 				}
+			} else{
+			 (document.getElementsByTagName('form'))[0].innerHTML = "You voted in this poll.";
 			}
 		}
 

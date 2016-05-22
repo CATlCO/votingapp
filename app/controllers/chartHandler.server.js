@@ -9,21 +9,21 @@ function chartHandler(){
 	this.getPoll = function(req, res){
 		Polls.find({}).populate('author', 'github').sort({ _id: -1 }).exec(function(err, result){
 			if (err) { throw err; }
-			res.json(result);
+			res.json({result: result});
 		});
 	};
 
 	this.myPolls = function(req, res){
 		Users.findById(req.user.id).populate({ path: 'polls', options: {sort: {_id: -1}}}).exec(function(err, user){
 			if (err) { throw err; }
-			res.json(user.polls);
+			res.json({result: user.polls});
 		});
 	}
 
 	this.getOnePoll = function(req, res){
 		Polls.findById(req.params.poll_id).populate('author', 'github').exec(function(err, result){
 			if (err) { throw err; }
-			res.json(result);
+			res.json({result: result, ip: req.headers['x-forwarded-for']});
 		});
 	};	
 
@@ -44,9 +44,11 @@ function chartHandler(){
 				result.chartData[1].push(1);
 			}
 			result.markModified('chartData');
+			result.voted.push(req.headers['x-forwarded-for']);
+			result.markModified('voted');
 			result.save(function(err, doc){
 				if (err) throw err;
-				res.json(doc);
+				res.json({result: doc});
 			});
 		});
 	};

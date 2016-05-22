@@ -9,7 +9,8 @@ var Poll = new Schema(
 		"question" : String,
 		"color": String,
 		"chart" : String,
-		"chartData" : Array
+		"chartData" : Array,
+		"voters": Array
 	},
   { versionKey: false }
   );
