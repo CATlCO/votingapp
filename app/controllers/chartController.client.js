@@ -154,6 +154,7 @@
 				}
 			} else{
 			 document.getElementById('msg').innerHTML = "You voted in this poll.";
+			 document.getElementById('container').removeChild(document.getElementById('vote'));
 			}
 		}
 
