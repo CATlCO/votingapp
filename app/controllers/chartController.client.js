@@ -142,7 +142,7 @@
 		drawGraph(data);
 
 		if (detail) {
-			if (!data[0].voters.includes(ip)){
+			if (data[0].voters.indexOf(ip) < 0){
 			var inputlist = document.getElementById('input_list');
 				for (var k in data[0].chartData.labels) {
 					var label =  data[0].chartData.labels[k];

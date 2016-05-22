@@ -30,7 +30,8 @@ function chartHandler(){
 	this.updatePoll = function(req, res){
 		Polls.findById(req.params.poll_id).populate('author', 'github').exec(function(err, result){
 			if (err) throw err;
-			if (result.voters.includes(req.headers['x-forwarded-for'])) {
+			console.log(result.voters);
+			if (result.voters.indexOf(req.headers['x-forwarded-for']) >= 0) {
 				res.redirect('/');
 			}
 			var added;

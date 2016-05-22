@@ -458,6 +458,9 @@ footer {
   .github:hover {
     color: white; }
 
+#msg {
+  margin-bottom: 50px; }
+
 @media (max-width: 1000px) {
   .multiple .chartWrapper {
     width: 50%; } }
