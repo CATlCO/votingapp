@@ -67,9 +67,10 @@ function chartHandler(){
 		}
 		var chartData = [options, values]
 
-		Polls.count({}, function(err, count){
+		Polls.find({}).sort({ _id: -1 }).limit(1).exec(function(err, result){
 			if (err) { throw err; }
-			var newDoc = new Polls({ _id: count + 1, author: req.user.id, question: body.question, chart: body.chart, color: body.hue, chartData: chartData});
+			console.log(result);
+			var newDoc = new Polls({ _id: result[0]._id + 1, author: req.user.id, question: body.question, chart: body.chart, color: body.hue, chartData: chartData});
 			newDoc.save(function(err, doc){
 				if (err) throw err;
 			});
