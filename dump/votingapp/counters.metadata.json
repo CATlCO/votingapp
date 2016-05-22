@@ -1,0 +1,1 @@
+{ "options" : { "create" : "counters" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "votingapp.counters", "name" : "_id_" } ] }

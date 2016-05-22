@@ -414,7 +414,8 @@ option {
   width: 100%; }
 
 .multiple {
-  text-align: left; }
+  text-align: left;
+  width: 100%; }
 
 .multiple .chartWrapper {
   width: 33.33%; }

@@ -57,7 +57,7 @@ function chartHandler(){
 		var options = _.reject(_.uniq(body.options), function(s){ return s == ''; });
 		var values = [];
 		for (var i in options){
-			values.push(0);
+			values.push(rand());
 		}
 		var chartData = [options, values]
 
