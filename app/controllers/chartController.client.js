@@ -201,7 +201,7 @@
 		document.getElementById("create").onsubmit = function(e){
 			e.preventDefault();	
 			var inputs =document.getElementsByName("options");
-			if (inputs.length === 2 && inputs[0].value === inputs[1].value) {
+			if (inputs[0].value === inputs[1].value) {
 				classie.add(document.getElementById("same"), "show");
 				setTimeout(function(){
 					classie.remove(document.getElementById("same"), "show");
