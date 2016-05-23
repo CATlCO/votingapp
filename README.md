@@ -1,4 +1,4 @@
-Fullstack Javascript Voting App
+**Fullstack Javascript Voting App**
 
 User stories:
 * As an authenticated user, I can keep my polls and come back later to access them.
