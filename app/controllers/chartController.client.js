@@ -153,7 +153,7 @@
 					}
 				}
 			} else{
-			 document.getElementById('msg').innerHTML = "You voted in this poll.";
+			 document.getElementById('msg').innerHTML = "You have already voted in this poll.";
 			 document.getElementById('container').removeChild(document.getElementById('vote'));
 			}
 		}
@@ -177,7 +177,7 @@
 				}, 2000);
 			} else {
 				ajaxFunctions.ajaxRequest('POST', apiUrl, createChart, data);
-				document.getElementById('msg').innerHTML = "You voted in this poll.";
+				document.getElementById('msg').innerHTML = "You have already voted in this poll.";
 				document.getElementById('container').removeChild(document.getElementById('vote'));
 			}
 		};
@@ -197,6 +197,19 @@
 				drawGraph(data);
 			}
 		}); 
+
+		document.getElementById("create").onsubmit = function(e){
+			e.preventDefault();	
+			var inputs =document.getElementsByName("options");
+			if (inputs.length === 2 && inputs[0].value === inputs[1].value) {
+				classie.add(document.getElementById("same"), "show");
+				setTimeout(function(){
+					classie.remove(document.getElementById("same"), "show");
+				}, 2000);
+			} else {
+				this.submit();
+			}
+		};
 
 		function options(){
 			var arr = [];

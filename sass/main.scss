@@ -510,6 +510,11 @@ option{
 	opacity: 0;
 	transition: opacity .3s ease-in-out;
 
+	&#same{
+		white-space: nowrap;
+		bottom: 50px;
+	}
+
 	&::before{
 		content: "";
 		display: inline-block;

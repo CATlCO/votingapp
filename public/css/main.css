@@ -396,6 +396,9 @@ option {
   width: 250px;
   opacity: 0;
   transition: opacity .3s ease-in-out; }
+  .error#same {
+    white-space: nowrap;
+    bottom: 50px; }
   .error::before {
     content: "";
     display: inline-block;

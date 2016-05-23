@@ -63,13 +63,12 @@ function chartHandler(){
 		var options = _.reject(_.uniq(body.options), function(s){ return s == ''; });
 		var values = [];
 		for (var i in options){
-			values.push(rand());
+			values.push(0);
 		}
 		var chartData = [options, values]
 
 		Polls.find({}).sort({ _id: -1 }).limit(1).exec(function(err, result){
 			if (err) { throw err; }
-			console.log(result);
 			var newDoc = new Polls({ _id: result[0]._id + 1, author: req.user.id, question: body.question, chart: body.chart, color: body.hue, chartData: chartData});
 			newDoc.save(function(err, doc){
 				if (err) throw err;
