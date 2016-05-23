@@ -347,7 +347,7 @@ fieldset{
 }
 .select_opt{
 	color: $text;
-	background: url('/public/img/bg.jpg') center no-repeat;
+	background: #6D9386 url('/public/img/bg.jpg') center no-repeat;
 	padding: 10px;
 }
 option{
@@ -613,6 +613,7 @@ footer{
 @media (max-width: 650px){
 	main{
 		padding: 10px;
+		padding-bottom: 100px;
 	}
 
 	.logo, .buttons{
