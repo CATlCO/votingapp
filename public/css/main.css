@@ -388,6 +388,9 @@ option {
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.4); }
 
+.fa-github {
+  margin-right: 5px; }
+
 .error {
   color: white;
   position: absolute;
