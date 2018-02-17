@@ -1,5 +1,7 @@
 **Fullstack Javascript Voting App** build as part of the FreeCodeCamp curriculum
 
+*
+
 User stories:
 * As an authenticated user, I can keep my polls and come back later to access them.
 * As an authenticated user, I can share my polls with my friends.
